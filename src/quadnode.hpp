@@ -1,13 +1,16 @@
 #ifndef QUADNODE_HPP
 #define QUADNODE_HPP
+
+#include <SFML/Graphics.hpp>
+#include <fstream>
 #include "point.h"
 #include <vector>
 
 class Quadnode
 {
 public:
-    int x1, x2, y1, y2;
-    int max_content = 50;
+    double x1, x2, y1, y2;
+    int max_content = 2;
     int content= 0;
     std::vector<Point> points;
 
@@ -26,7 +29,10 @@ public:
 
     bool contains(Point point);
 
-    Quadnode(int x1, int x2, int y1, int y2);
+    void draw(sf::RenderWindow &window);
+    void view(std::ofstream &data);
+
+    Quadnode(double x1, double x2, double y1, double y2);
     ~Quadnode();
 };
 
