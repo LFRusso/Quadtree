@@ -32,8 +32,8 @@ void Quadnode::insert(Point point)
 
 bool Quadnode::contains(Point point)
 {
-    if(point.x >= this->x1 and point.x <= this->x2 and
-    point.y >= this->y1 and point.y <= this->y2)
+    if(point.x >= this->x1 and point.x < this->x2 and
+    point.y >= this->y1 and point.y < this->y2)
     {
         return true;
     } else {

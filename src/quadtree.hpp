@@ -18,7 +18,7 @@ public:
     void read_from_table(std::string filename);
     void read_from_matrix(std::string filename);
 
-    void visualize(std::ofstream &data);
+    void visualize();
 
     void start();
     void query(int val);

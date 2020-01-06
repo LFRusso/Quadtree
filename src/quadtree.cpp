@@ -45,9 +45,12 @@ void Quadtree::read_from_table(std::string filename)
 
 void Quadtree::read_from_matrix(std::string filename){}
 
-void Quadtree::visualize(std::ofstream &data)
+void Quadtree::visualize()
 {
+    std::ofstream data;
+    data.open("./output/rects.dat");
     quadnode->view(data);
+    data.close();
 }
 
 void Quadtree::query(int val)
@@ -57,7 +60,7 @@ void Quadtree::query(int val)
     {
     case 0:
         std::cout << "Querying for points separation\n";
-        file.open("distances.dat");
+        file.open("./output/distances.dat");
         quadnode->query_distances(file);
         file.close();
         std::cout << "Finished querying\n";
