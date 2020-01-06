@@ -2,14 +2,11 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-
 #include "quadtree.hpp"
 
 void Quadtree::start()
-{
+{   
+    std::cout << "Building quadtree\n";
     quadnode = new Quadnode(x1 - 10, x2 + 10, y1 - 10, y2 + 10);   
     for(int i=0; i< this->no_points; i++)
     {
@@ -19,6 +16,7 @@ void Quadtree::start()
 
 void Quadtree::read_from_table(std::string filename)
 {     
+    std::cout << "Reading file\n";
     std::ifstream file;
     file.open(filename);
     double x, y;
@@ -26,7 +24,7 @@ void Quadtree::read_from_table(std::string filename)
 
     if (!file)
     {
-        std::cout << "\nError opening file.\n";
+        std::cout << "\nError reading file.\n";
         return;
     }
 
@@ -45,12 +43,27 @@ void Quadtree::read_from_table(std::string filename)
     file.close();
 }
 
-void Quadtree::read_from_matrix(std::string filename)
-{
-
-}
+void Quadtree::read_from_matrix(std::string filename){}
 
 void Quadtree::visualize(std::ofstream &data)
 {
     quadnode->view(data);
+}
+
+void Quadtree::query(int val)
+{   
+    std::ofstream file;
+    switch(val)
+    {
+    case 0:
+        std::cout << "Querying for points separation\n";
+        file.open("distances.dat");
+        quadnode->query_distances(file);
+        file.close();
+        std::cout << "Finished querying\n";
+        break;
+    
+    default:
+        break;
+    }
 }

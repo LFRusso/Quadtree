@@ -1,16 +1,20 @@
 import numpy as np
 from matplotlib import pyplot as plt
-
-def normalize(x):
-    if x <= 0:
-        return 0
-    else:
-        return 1
+import os
+import time
 
 
-x = np.array([normalize(np.random.normal(-0.8,1)) for i in range(100000)])
+x1 = [np.random.normal(-10521, 20000)/100 for i in range(1000000)]
+x2 = [np.random.normal(50521, 10000)/100 for i in range(1000000)]
+x = x1+x2
 
-print(x)
+y = [np.random.normal(521, 84000)/100 for i in range(2000000)]
 
-plt.hist(x, bins=2)
-plt.show()
+np.savetxt("table.dat", np.array([x, y]).T, delimiter=" ")
+
+print("[Generator.py] runnig quadtree")
+start = time.time()
+os.system('./quadtree')
+end = time.time()
+print(end - start)
+

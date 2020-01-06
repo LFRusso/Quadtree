@@ -3,18 +3,11 @@
 #include <vector>
 #include <iostream>
 #include <string>
-
-#include <SFML/Graphics.hpp>
-
 #include "quadnode.hpp"
 
 class Quadtree
 {   
 public:
-    sf::Event event;
-    sf::RenderWindow window;
-    sf::Image image;
-
     int width, length;
 
     double x1{0}, x2{0}, y1{0}, y2{0};
@@ -28,7 +21,7 @@ public:
     void visualize(std::ofstream &data);
 
     void start();
-    void querry();
+    void query(int val);
 };
 
 #endif

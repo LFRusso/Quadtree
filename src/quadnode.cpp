@@ -1,17 +1,8 @@
 #include <iostream>
 #include <fstream>
+#include <cmath>
 #include "quadnode.hpp"
 #include "point.h"
-
-Quadnode::Quadnode(double x1, double x2, double y1, double y2)
-{  
-    this->x1 = x1;
-    this->x2 = x2;
-    this->y1 = y1;
-    this->y2 = y2;
-}
-
-Quadnode::~Quadnode(){}
 
 void Quadnode::insert(Point point)
 { 
@@ -69,11 +60,6 @@ void Quadnode::divide()
     this->points.clear();
 }
 
-void Quadnode::querry()
-{
-
-}
-
 void Quadnode::view(std::ofstream &data)
 {
 
@@ -85,5 +71,38 @@ void Quadnode::view(std::ofstream &data)
         nw->view(data);
         ne->view(data);
     }
-
 }
+
+void Quadnode::query_distances(std::ofstream &file)
+{   
+    if(isleaf)
+    {
+        for(int i=0; i < content; i++)
+        {
+            for(int j= i+1; j < content; j++)
+            {
+                file << points[i].x << " " << points[i].y << " " << points[j].x << " " << points[j].y << " " << this->distance(points[i], points[j]) << "\n";
+            }
+        }
+    } else {
+        sw->query_distances(file);
+        se->query_distances(file);
+        nw->query_distances(file);
+        ne->query_distances(file);
+    }
+}
+
+double Quadnode::distance(Point point1, Point point2)
+{
+    return pow(pow(point1.x-point2.x, 2) + pow(point1.y - point2.y,2),0.5);
+}
+
+Quadnode::Quadnode(double x1, double x2, double y1, double y2)
+{  
+    this->x1 = x1;
+    this->x2 = x2;
+    this->y1 = y1;
+    this->y2 = y2;
+}
+
+Quadnode::~Quadnode(){}

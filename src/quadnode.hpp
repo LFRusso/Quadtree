@@ -1,7 +1,6 @@
 #ifndef QUADNODE_HPP
 #define QUADNODE_HPP
 
-#include <SFML/Graphics.hpp>
 #include <fstream>
 #include "point.h"
 #include <vector>
@@ -10,7 +9,7 @@ class Quadnode
 {
 public:
     double x1, x2, y1, y2;
-    int max_content = 2;
+    int max_content = 50;
     int content= 0;
     std::vector<Point> points;
 
@@ -25,11 +24,11 @@ public:
 
     void divide();
 
-    void querry();
+    void query_distances(std::ofstream &file);
+    double distance(Point point1, Point point2);
 
     bool contains(Point point);
 
-    void draw(sf::RenderWindow &window);
     void view(std::ofstream &data);
 
     Quadnode(double x1, double x2, double y1, double y2);

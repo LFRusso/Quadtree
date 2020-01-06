@@ -13,6 +13,7 @@ h = abs(y2-y1)
 for i in range(len(x2)):
     ax.add_patch(patches.Rectangle((x1[i], y1[i]), height=h[i], width=w[i], linewidth=1,edgecolor='k',facecolor='none'))
 
-ax.scatter(x, y, color = "r")
+ax.scatter(x, y, color = "r", s=2)
+fig.tight_layout()
 
 plt.show()
