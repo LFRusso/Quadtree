@@ -12,7 +12,7 @@ Quadtree genérica para uso geral feita em C++
 make
 ```
 
-2. Agora a biblioteca já é usável. Para importá-la, crie um programa `.py` na pasta principal e adicione ao início do programa 
+2. Agora a biblioteca já é usável. Para importá-la, crie um arquivo `.py` na pasta principal e adicione ao início do programa 
 
 ```python3
 from source import quadtree
@@ -22,7 +22,7 @@ from source import quadtree
 
 4. Os arquivos de entrada devem contar com duas colunas, a primeira sendo a coordenada em **x** e a segunda em **y** de cada ponto.  
 
-O arquivo `exemplo.py` pode ser usado de referência. os arquivos *rede1* e *table.dat* são modelos de entrada. Experimente executá-lo com
+O arquivo `exemplo.py` pode ser usado de referência. Os arquivos *rede1* e *table.dat* são modelos de entrada. Experimente executá-lo com
 
 ```
 python3 exemplo.py
