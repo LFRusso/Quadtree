@@ -12,13 +12,14 @@ void Quadtree::start()
     {
         quadnode->insert(points[i]);
     }
+    std::cout << "Quadtree built successfully\n";
 }
 
 void Quadtree::read_from_table(std::string filename)
 {     
-    std::cout << "Reading file\n";
     std::ifstream file;
     file.open(filename);
+    
     double x, y;
     Point point;
 
