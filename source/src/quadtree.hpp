@@ -9,6 +9,7 @@ class Quadtree
 {   
 public:
     int width, length;
+    bool labeled{false};
 
     double x1{0}, x2{0}, y1{0}, y2{0};
     Quadnode* quadnode;
@@ -17,6 +18,7 @@ public:
 
     void read_from_table(std::string filename);
     void read_from_matrix(std::string filename);
+    void read_labeled(std::string filename);
 
     void visualize();
 

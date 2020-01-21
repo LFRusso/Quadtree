@@ -4,6 +4,7 @@
 struct Point
 {
     double x, y;
+    std::string label;
 };
 
 #endif

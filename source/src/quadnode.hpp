@@ -24,7 +24,7 @@ public:
 
     void divide();
 
-    void query_distances(std::ofstream &file);
+    void query_distances(std::ofstream &file, bool labeled=false);
     double distance(Point point1, Point point2);
 
     bool contains(Point point);

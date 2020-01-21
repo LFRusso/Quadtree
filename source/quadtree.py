@@ -4,20 +4,22 @@ import matplotlib.patches as patches
 import subprocess
 
 datafile = "nan"
+enable_labels = 0
 
-def build(file):
+def build(file, labels=0):
+    global enable_labels
+    enable_labels = labels
     process = subprocess.Popen('./source/quadtree', shell=False,stdin=subprocess.PIPE)
     global datafile
     datafile = file
-    file += "\n"
+    file += " "+str(labels)+"\n"
     process.stdin.write(file.encode('UTF-8'))
     process.communicate()
     return 0
 
 def view():
-    print(datafile)
     x1, x2, y1, y2 = np.loadtxt("output/rects.dat", unpack=True)
-    x, y = np.loadtxt(datafile, unpack=True)
+    x, y= np.loadtxt(datafile, unpack=True, usecols=[0, 1])
 
     fig,ax = plt.subplots(1)
 

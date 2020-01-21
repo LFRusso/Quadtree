@@ -73,7 +73,7 @@ void Quadnode::view(std::ofstream &data)
     }
 }
 
-void Quadnode::query_distances(std::ofstream &file)
+void Quadnode::query_distances(std::ofstream &file, bool labeled)
 {   
     if(isleaf)
     {
@@ -81,14 +81,18 @@ void Quadnode::query_distances(std::ofstream &file)
         {
             for(int j= i+1; j < content; j++)
             {
-                file << points[i].x << " " << points[i].y << " " << points[j].x << " " << points[j].y << " " << this->distance(points[i], points[j]) << "\n";
+                if(labeled){
+                    file << points[i].x << " " << points[i].y << " " <<  points[i].label << " " << points[j].x << " " << points[j].y << " " << points[j].label << " " << this->distance(points[i], points[j]) << "\n";
+                } else {
+                    file << points[i].x << " " << points[i].y << " " << points[j].x << " " << points[j].y << " " << this->distance(points[i], points[j]) << "\n";
+                }
             }
         }
     } else {
-        sw->query_distances(file);
-        se->query_distances(file);
-        nw->query_distances(file);
-        ne->query_distances(file);
+        sw->query_distances(file, labeled);
+        se->query_distances(file, labeled);
+        nw->query_distances(file, labeled);
+        ne->query_distances(file, labeled);
     }
 }
 

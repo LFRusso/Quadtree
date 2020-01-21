@@ -44,6 +44,37 @@ void Quadtree::read_from_table(std::string filename)
     file.close();
 }
 
+void Quadtree::read_labeled(std::string filename)
+{
+    this->labeled = true;
+    std::ifstream file;
+    file.open(filename);
+    
+    double x, y;
+    std::string label;
+    Point point;
+
+    if (!file)
+    {
+        std::cout << "\nError reading file.\n";
+        return;
+    }
+    while(file >> x >> y >> label)
+    {
+        if(x<x1){x1 = x;}
+        if(x>x2){x2 = x;}
+        if(y<y1){y1 = y;}
+        if(y>y2){y2 = y;}
+
+        point.x = x;
+        point.y = y;
+        point.label = label;
+        this->points.push_back(point);
+        no_points++;
+    }
+    file.close();
+}
+
 void Quadtree::read_from_matrix(std::string filename){}
 
 void Quadtree::visualize()
@@ -62,7 +93,7 @@ void Quadtree::query(int val)
     case 0:
         std::cout << "Querying for points separation\n";
         file.open("./output/distances.dat");
-        quadnode->query_distances(file);
+        quadnode->query_distances(file, labeled);
         file.close();
         std::cout << "Finished querying\n";
         break;
