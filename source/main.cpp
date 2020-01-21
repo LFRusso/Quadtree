@@ -23,9 +23,6 @@ int start()
 
 int main(){
     std::cin >> datafile >> enable_labels;
-    if(!enable_labels){
-        std::cout << "falso" << std::endl;
-    }
     start();
     return 0;
 }
